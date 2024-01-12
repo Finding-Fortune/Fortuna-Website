@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finding Fortuna</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        @media screen and (max-width: 600px) {
+            .game-images img {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: #f7fafc; font-family: Arial, sans-serif;">
+
+    <!-- Header Section -->
+    <header style="text-align: center; padding: 24px;">
+        <h1 style="color: #2d3748; font-size: 32px; font-weight: bold;">Welcome to Finding Fortune's Website</h1>
+        <p style="color: #718096;">Follow my game development journey ~</p>
+    </header>
+
+    <!-- YouTube Section -->
+    <section style="padding: 24px;">
+        <div class="container" style="text-align: center; margin-left: auto; margin-right: auto;">
+            <h2 style="color: #2d3748; font-size: 24px; font-weight: bold;">My YouTube Channel</h2>
+            <p style="color: #718096;">Check out my latest videos on game development!</p>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 16px; gap: 16px;">
+                <!-- Video 1 -->
+                <div style="width: 30%; padding-top: 16.95%; position: relative; margin-bottom: 16px;">
+                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/vT5KJO0J0Ow" frameborder="0" allowfullscreen></iframe>
+                    <p style="position: absolute; width: 100%; bottom: -30px; left: 0; color: #718096; padding: 4px 0;">My Latest Devlog</p>
+                </div>
+                <!-- Video 2 -->
+                <div style="width: 30%; padding-top: 16.95%; position: relative; margin-bottom: 16px;">
+                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/W2_PVKycJhw" frameborder="0" allowfullscreen></iframe>
+                    <p style="position: absolute; width: 100%; bottom: -30px; left: 0; color: #718096; padding: 4px 0;">Previous Devlog</p>
+                </div>
+                <!-- Video 3 -->
+                <div style="width: 30%; padding-top: 16.95%; position: relative; margin-bottom: 16px;">
+                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/MCR-_S535QQ" frameborder="0" allowfullscreen></iframe>
+                    <p style="position: absolute; width: 100%; bottom: -30px; left: 0; color: #718096; padding: 4px 0;">First ever Devlog</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Game Development Section -->
+    <section style="background-color: white; padding: 24px;">
+        <div class="container" style="text-align: center; margin-left: auto; margin-right: auto;">
+            <h2 style="color: #2d3748; font-size: 24px; font-weight: bold;">My Game Development Projects</h2>
+            <p style="color: #718096;">Discover my latest projects and game demos.</p>
+            <div class="game-images" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 64px; margin-top: 16px;">
+                <!-- Game Screenshot 1 -->
+                <div style="width: 40vw; text-align: center;">
+                    <img src="img/game_screenshots/screenie1.png" alt="Game Screenshot 1" style="width: 100%; height: auto;">
+                    <p style="color: #718096;">Clouds in a mountains biome</p>
+                </div>
+
+                <!-- Game Screenshot 2  -->
+                <div style="width: 40vw; text-align: center;">
+                    <img src="img/game_screenshots/screenie2.png" alt="Game Screenshot 2" style="width: 100%; height: auto;">
+                    <p style="color: #718096;">Clouds in a snowy biome</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section style="background-color: white; padding: 24px;">
+        <div class="container" style="text-align: center; margin-left: auto; margin-right: auto;">
+            <h2 style="color: #2d3748; font-size: 24px; font-weight: bold;">Latest Blog Posts</h2>
+            <div class="articles-grid" style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 16px;">
+                <!-- Repeat this block for each article -->
+                <div style="width: 40vw; background-color: #e6f0f8; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                    <h3 style="font-size: 20px; color: #2d3748; margin-top: 8px;">How to make a voxel game</h3>
+                    <p style="color: #718096; padding: 4px 0;">Making a voxel game.... What are the main concepts?</p>
+                    <img src="img/placeholder/kittens_placeholder.png" alt="Article 1" style="width: 100%; height: auto; border-radius: 8px;">
+                </div>
+                <!-- Example for another article -->
+                <div style="width: 40vw; background-color: #e6f0f8; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                    <h3 style="font-size: 20px; color: #2d3748; margin-top: 8px;">Making the game engine</h3>
+                    <p style="color: #718096; padding: 4px 0;">How do you get started making a game engine?</p>
+                    <img src="img/placeholder/kittens_placeholder.png" alt="Article 1" style="width: 100%; height: auto; border-radius: 8px;">
+                </div>
+                <!-- Add more articles as needed -->
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer style="background-color: #2d3748; color: white; text-align: center; padding: 24px; height: 100px; 
+        display: flex; justify-content: center; align-items: center;"
+    >
+        <p>© <span id="current-year"></span> Finding Fortune. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript to update the year -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>

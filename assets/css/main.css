@@ -3399,3 +3399,12 @@ input, select, textarea {
         width: 50%; /* Two columns on mobile */
     }
 }
+
+.lb-image {
+  border-radius: 5px;
+}
+.lb-nav a.lb-prev, .lb-nav a.lb-next {
+  background: rgba(0, 0, 0, 0.7);
+}
+.lb-image, .lb-outerContainer { transition: none !important; } .lb-dataContainer { transition: opacity 0.2s ease-in-out; }
+

@@ -3358,3 +3358,44 @@ input, select, textarea {
 			}
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* My custom CSS */
+
+    /* Video Container for YouTube Embeds */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+/* Adjust screenshot grid for smaller screens */
+@media screen and (max-width: 736px) {
+    .row.gtr-50 > .col-4 {
+        width: 50%; /* Two columns on mobile */
+    }
+}

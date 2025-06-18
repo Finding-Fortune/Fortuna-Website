@@ -1,129 +1,236 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finding Fortuna</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        @media screen and (max-width: 600px) {
-            .game-images img {
-                width: 80%;
-            }
-        }
-    </style>
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Fortune's Blog</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
 
-    <!-- Essential Meta Tags -->
-    <meta property="og:title" content="Finding Fortuna">
-    <meta property="og:description" content="Finding Fortune's website. Host of blogs and more">
-    <meta property="og:image" content="img/game_screenshots/screenie2.png">
-    <meta property="og:url" content="https://finding-fortune.github.io/Fortuna-Website/">
+			<!-- Header -->
+				<div id="header">
 
-    <!-- Twitter Meta tags -->
-    <meta name="twitter:card" content="img/game_screenshots/screenie2.png">
-    <meta property="og:site_name" content="Finding Fortuna">
-    <meta name="twitter:image:alt" content="Snowy biome in game">
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li class="current"><a href="index.html">Home</a></li>
+								<li>
+									<a href="#">Dropdown</a>
+									<ul>
+										<li><a href="#">Lorem dolor</a></li>
+										<li><a href="#">Magna phasellus</a></li>
+										<li><a href="#">Etiam sed tempus</a></li>
+										<li>
+											<a href="#">Submenu</a>
+											<ul>
+												<li><a href="#">Lorem dolor</a></li>
+												<li><a href="#">Phasellus magna</a></li>
+												<li><a href="#">Magna phasellus</a></li>
+												<li><a href="#">Etiam nisl</a></li>
+												<li><a href="#">Veroeros feugiat</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Veroeros feugiat</a></li>
+									</ul>
+								</li>
+								<li><a href="left-sidebar.html">Left Sidebar</a></li>
+								<li><a href="right-sidebar.html">Right Sidebar</a></li>
+								<li><a href="two-sidebar.html">Two Sidebar</a></li>
+								<li><a href="no-sidebar.html">No Sidebar</a></li>
+							</ul>
+						</nav>
 
-    <meta name="twitter:site" content="@FindingFortune1">
-    <meta name="twitter:title" content="Finding Fortuna">
-    <meta name="twitter:description" content="Finding Fortune's website. Host of blogs and more">
-    <meta name="twitter:creator" content="@FindingFortune1">
-</head>
-<body style="background-color: #f7fafc; font-family: Arial, sans-serif;">
+				</div>
 
-    <!-- Header Section -->
-    <header style="text-align: center; padding: 24px;">
-        <h1 style="color: #2d3748; font-size: 32px; font-weight: bold;">Welcome to Finding Fortune's Website</h1>
-        <p style="color: #718096;">Follow my game development journey ~</p>
-    </header>
+			<!-- Banner -->
+				<section id="banner">
+					<header>
+						<h2>Fortune's Favor: <em>An upcoming voxel game</em></h2>
+						<a href="https://www.youtube.com/@Finding_Fortune/videos" target="_blank" class="button">Youtube Channel</a>
+					</header>
+				</section>
 
-    <!-- YouTube Section -->
-    <section style="padding: 24px;">
-        <div class="container" style="text-align: center; margin-left: auto; margin-right: auto;">
-            <h2 style="color: #2d3748; font-size: 24px; font-weight: bold;">My YouTube Channel</h2>
-            <p style="color: #718096;">Check out my latest videos on game development!</p>
-            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 16px; gap: 16px;">
-                <!-- Video 1 -->
-                <div style="width: 30%; padding-top: 16.95%; position: relative; margin-bottom: 16px;">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/vT5KJO0J0Ow" frameborder="0" allowfullscreen></iframe>
-                    <p style="position: absolute; width: 100%; bottom: -30px; left: 0; color: #718096; padding: 4px 0;">My Latest Devlog</p>
-                </div>
-                <!-- Video 2 -->
-                <div style="width: 30%; padding-top: 16.95%; position: relative; margin-bottom: 16px;">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/W2_PVKycJhw" frameborder="0" allowfullscreen></iframe>
-                    <p style="position: absolute; width: 100%; bottom: -30px; left: 0; color: #718096; padding: 4px 0;">Previous Devlog</p>
-                </div>
-                <!-- Video 3 -->
-                <div style="width: 30%; padding-top: 16.95%; position: relative; margin-bottom: 16px;">
-                    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/MCR-_S535QQ" frameborder="0" allowfullscreen></iframe>
-                    <p style="position: absolute; width: 100%; bottom: -30px; left: 0; color: #718096; padding: 4px 0;">First ever Devlog</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+			<!-- Highlights -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row gtr-200">
+							<section class="col-4 col-12-narrower">
+								<div class="box highlight">
+									<i class="icon solid major fa-paper-plane"></i>
+									<h3>This Is Important</h3>
+									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+								</div>
+							</section>
+							<section class="col-4 col-12-narrower">
+								<div class="box highlight">
+									<i class="icon solid major fa-pencil-alt"></i>
+									<h3>Also Important</h3>
+									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+								</div>
+							</section>
+							<section class="col-4 col-12-narrower">
+								<div class="box highlight">
+									<i class="icon solid major fa-wrench"></i>
+									<h3>Probably Important</h3>
+									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+								</div>
+							</section>
+						</div>
+					</div>
+				</section>
 
-    <!-- Game Development Section -->
-    <section style="background-color: white; padding: 24px;">
-        <div class="container" style="text-align: center; margin-left: auto; margin-right: auto;">
-            <h2 style="color: #2d3748; font-size: 24px; font-weight: bold;">My Game Development Projects</h2>
-            <p style="color: #718096;">Discover my latest projects and game demos.</p>
-            <div class="game-images" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 64px; margin-top: 16px;">
-                <!-- Game Screenshot 1 -->
-                <div style="width: 40vw; text-align: center;">
-                    <img src="img/game_screenshots/screenie1.png" alt="Game Screenshot 1" style="width: 100%; height: auto;">
-                    <p style="color: #718096;">Clouds in a mountains biome</p>
-                </div>
+			<!-- Gigantic Heading -->
+				<section class="wrapper style2">
+					<div class="container">
+						<header class="major">
+							<h2>A gigantic heading you can use for whatever</h2>
+							<p>With a much smaller subtitle hanging out just below it</p>
+						</header>
+					</div>
+				</section>
 
-                <!-- Game Screenshot 2  -->
-                <div style="width: 40vw; text-align: center;">
-                    <img src="img/game_screenshots/screenie2.png" alt="Game Screenshot 2" style="width: 100%; height: auto;">
-                    <p style="color: #718096;">Clouds in a snowy biome</p>
-                </div>
-            </div>
-        </div>
-    </section>
+			<!-- Posts -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row">
+							<section class="col-6 col-12-narrower">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/pic01.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>The First Thing</h3>
+										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+									</div>
+								</div>
+							</section>
+							<section class="col-6 col-12-narrower">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/pic02.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>The Second Thing</h3>
+										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="row">
+							<section class="col-6 col-12-narrower">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/pic03.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>The Third Thing</h3>
+										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+									</div>
+								</div>
+							</section>
+							<section class="col-6 col-12-narrower">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/pic04.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>The Fourth Thing</h3>
+										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</section>
 
-    <!-- Blog Section -->
-    <section style="background-color: white; padding: 24px;">
-        <div class="container" style="text-align: center; margin-left: auto; margin-right: auto;">
-            <h2 style="color: #2d3748; font-size: 24px; font-weight: bold;">Latest Blog Posts</h2>
-            <div class="articles-grid" style="display: flex; flex-wrap: wrap; justify-content: space-around; margin-top: 16px;">
-                <!-- Article 1 -->
-                <div style="width: 40vw; background-color: #e6f0f8; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
-                    <h3 style="font-size: 20px; color: #2d3748; margin-top: 8px;">How to make a voxel game</h3>
-                    <p style="color: #718096; padding: 4px 0;">Making a voxel game.... What are the main concepts?</p>
-                    <img src="img/placeholder/kittens_placeholder.png" alt="Article 1" style="width: 100%; height: auto; border-radius: 8px;">
-                </div>
-                <!-- Article 2 -->
-                <div style="width: 40vw; background-color: #e6f0f8; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
-                    <h3 style="font-size: 20px; color: #2d3748; margin-top: 8px;">Making the game engine</h3>
-                    <p style="color: #718096; padding: 4px 0;">How do you get started making a game engine?</p>
-                    <img src="img/placeholder/kittens_placeholder.png" alt="Article 1" style="width: 100%; height: auto; border-radius: 8px;">
-                </div>
-            </div>
-        </div>
-    </section>
+			<!-- CTA -->
+				<section id="cta" class="wrapper style3">
+					<div class="container">
+						<header>
+							<h2>Are you ready to continue your quest?</h2>
+							<a href="#" class="button">Insert Coin</a>
+						</header>
+					</div>
+				</section>
 
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+						<div class="row">
+							<section class="col-3 col-6-narrower col-12-mobilep">
+								<h3>Links to Stuff</h3>
+								<ul class="links">
+									<li><a href="#">Mattis et quis rutrum</a></li>
+									<li><a href="#">Suspendisse amet varius</a></li>
+									<li><a href="#">Sed et dapibus quis</a></li>
+									<li><a href="#">Rutrum accumsan dolor</a></li>
+									<li><a href="#">Mattis rutrum accumsan</a></li>
+									<li><a href="#">Suspendisse varius nibh</a></li>
+									<li><a href="#">Sed et dapibus mattis</a></li>
+								</ul>
+							</section>
+							<section class="col-3 col-6-narrower col-12-mobilep">
+								<h3>More Links to Stuff</h3>
+								<ul class="links">
+									<li><a href="#">Duis neque nisi dapibus</a></li>
+									<li><a href="#">Sed et dapibus quis</a></li>
+									<li><a href="#">Rutrum accumsan sed</a></li>
+									<li><a href="#">Mattis et sed accumsan</a></li>
+									<li><a href="#">Duis neque nisi sed</a></li>
+									<li><a href="#">Sed et dapibus quis</a></li>
+									<li><a href="#">Rutrum amet varius</a></li>
+								</ul>
+							</section>
+							<section class="col-6 col-12-narrower">
+								<h3>Get In Touch</h3>
+								<form>
+									<div class="row gtr-50">
+										<div class="col-6 col-12-mobilep">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="col-6 col-12-mobilep">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="col-12">
+											<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
+										</div>
+										<div class="col-12">
+											<ul class="actions">
+												<li><input type="submit" class="button alt" value="Send Message" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+							</section>
+						</div>
+					</div>
 
+					<!-- Icons -->
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							<li><a href="#" class="icon brands fa-google-plus-g"><span class="label">Google+</span></a></li>
+						</ul>
 
-    <!-- Footer -->
-    <footer style="background-color: #2d3748; color: white; text-align: center; padding: 24px; height: 100px; 
-        display: flex; justify-content: center; align-items: center;"
-    >
-        <p>© <span id="current-year"></span> Finding Fortune. All rights reserved.</p>
-    </footer>
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
 
-    <!-- JavaScript to update the year -->
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
+				</div>
 
-</body>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>

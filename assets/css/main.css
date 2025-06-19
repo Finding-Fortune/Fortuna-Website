@@ -3408,3 +3408,5 @@ input, select, textarea {
 }
 .lb-image, .lb-outerContainer { transition: none !important; } .lb-dataContainer { transition: opacity 0.2s ease-in-out; }
 
+.custom-sword { width: 1.5em; height: 2.5em; display: inline-block; vertical-align: middle; }
+

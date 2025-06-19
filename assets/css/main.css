@@ -2958,7 +2958,7 @@ input, select, textarea {
 				padding-left: 7em;
 			}
 
-				.box.highlight i {
+				.box.highlight i, img.icon {
 					position: absolute;
 					margin: 0;
 					left: 0;
@@ -3409,4 +3409,3 @@ input, select, textarea {
 .lb-image, .lb-outerContainer { transition: none !important; } .lb-dataContainer { transition: opacity 0.2s ease-in-out; }
 
 .custom-sword { width: 1.5em; height: 2.5em; display: inline-block; vertical-align: middle; }
-

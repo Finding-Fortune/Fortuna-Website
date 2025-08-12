@@ -13,187 +13,199 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" />
         <link rel="icon" type="image/x-icon" href="images/favicon.ico">
         <style>
-            .task-board {
-                display: flex;
-                justify-content: space-between;
-                gap: 20px;
-                padding: 20px;
-            }
-            .task-column {
-                flex: 1;
-                min-width: 300px;
-                background: #f4f4f4;
-                border-radius: 5px;
-                padding: 15px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-            .task-column h3 {
-                margin-top: 0;
-                font-size: 1.5em;
-                color: #333;
-            }
-            .task-card {
-                background: white;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                padding: 10px;
-                margin-bottom: 10px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-                position: relative;
-            }
-            .task-card:hover {
-                background: #f9f9f9;
-            }
-            .task-card .card-footer {
-                display: flex;
-                align-items: center;
-                margin-top: 10px;
-            }
-            .task-card .color-bar {
-                width: 20px;
-                height: 20px;
-                margin-right: 10px;
-                border-radius: 3px;
-            }
-            .task-card .category-label {
-                font-size: 0.8em;
-                color: #777;
-            }
-            .task-card .comment-count {
-                position: absolute;
-                bottom: 10px;
-                right: 10px;
-                font-size: 0.8em;
-                color: #777;
-                display: flex;
-                align-items: center;
-            }
-            .task-card .comment-count i {
-                margin-right: 5px;
-            }
-            .add-card-btn {
-                display: none;
-                background: #e0e0e0;
-                border: none;
-                padding: 10px;
-                width: 100%;
-                text-align: left;
-                cursor: pointer;
-                border-radius: 3px;
-                font-size: 0.9em;
-            }
-            .add-card-btn:hover {
-                background: #d0d0d0;
-            }
-            .export-btn {
-                display: none;
-                margin: 20px auto;
-                padding: 10px 20px;
-                background: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            .export-btn:hover {
-                background: #45a049;
-            }
-            /* Modal styles */
-            .modal {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.5);
-                z-index: 1000;
-                overflow: auto;
-            }
-            .modal-content {
-                background: white;
-                margin: 5% auto;
-                padding: 20px;
-                width: 80%;
-                max-width: 600px;
-                max-height: 80vh;
-                border-radius: 8px;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-                overflow-y: auto;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            }
-            .modal-content h3 {
-                margin: 0 0 10px;
-                font-size: 1.4em;
-                color: #172b4d;
-            }
-            .modal-content .task-title {
-                font-size: 1.2em;
-                margin-bottom: 15px;
-                color: #172b4d;
-            }
-            .modal-content .label-container {
-                display: inline-flex;
-                align-items: center;
-                padding: 4px 8px;
-                margin-right: 8px;
-                margin-bottom: 8px;
-                border-radius: 3px;
-                font-size: 0.9em;
-                color: white;
-            }
-            .modal-content h4 {
-                font-size: 1em;
-                color: #44546f;
-                margin: 15px 0 10px;
-            }
-            .modal-content ul {
-                list-style: none;
-                padding: 0;
-            }
-            .modal-content li {
-                margin-bottom: 10px;
-                padding: 10px;
-                background: #f4f5f7;
-                border-radius: 3px;
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                color: #172b4d;
-            }
-            .modal-content .comment-date {
-                font-size: 0.8em;
-                color: #44546f;
-                margin-left: 10px;
-                white-space: nowrap;
-            }
-            .modal-content .close {
-                float: right;
-                cursor: pointer;
-                font-size: 1.2em;
-                color: #172b4d;
-            }
-            .modal-content textarea, .modal-content select {
-                width: 100%;
-                margin-bottom: 10px;
-                padding: 8px;
-                border: 1px solid #dfe1e6;
-                border-radius: 3px;
-                font-size: 0.9em;
-            }
-            .modal-content .save-btn {
-                padding: 8px 16px;
-                background: #4CAF50;
-                color: white;
-                border: none;
-                border-radius: 3px;
-                cursor: pointer;
-                margin-top: 10px;
-            }
-            .modal-content .save-btn:hover {
-                background: #45a049;
-            }
-        </style>
+    .task-board {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        white-space: nowrap; /* Prevent wrapping */
+    }
+    .task-column {
+        flex: 0 0 400px; /* Maintain 400px width */
+        min-width: 400px; /* Match flex basis */
+        background: #f4f4f4;
+        border-radius: 5px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: block; /* Switch to block to avoid inline-block height alignment */
+        /* Remove inline-block and vertical-align to prevent height equalization */
+    }
+    .task-column h3 {
+        margin-top: 0;
+        font-size: 1.5em;
+        color: #333;
+        white-space: normal; /* Allow text wrapping in headers */
+    }
+    .task-card {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        position: relative;
+        max-height: 200px; /* Cap card height for scrolling */
+        overflow-y: auto; /* Enable vertical scrolling within card */
+    }
+    .task-card:hover {
+        background: #f9f9f9;
+    }
+    .task-card p {
+        white-space: normal; /* Allow multi-line text */
+        word-break: break-word; /* Break long words */
+        margin: 0; /* Remove default margin */
+        overflow-wrap: break-word; /* Ensure text wraps properly */
+    }
+    .task-card .card-footer {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+    }
+    .task-card .color-bar {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        border-radius: 3px;
+    }
+    .task-card .category-label {
+        font-size: 0.8em;
+        color: #777;
+    }
+    .task-card .comment-count {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 0.8em;
+        color: #777;
+        display: flex;
+        align-items: center;
+    }
+    .task-card .comment-count i {
+        margin-right: 5px;
+    }
+    .add-card-btn {
+        display: none;
+        background: #e0e0e0;
+        border: none;
+        padding: 10px;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 0.9em;
+    }
+    .add-card-btn:hover {
+        background: #d0d0d0;
+    }
+    .export-btn {
+        display: none;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .export-btn:hover {
+        background: #45a049;
+    }
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        overflow: auto;
+    }
+    .modal-content {
+        background: white;
+        margin: 5% auto;
+        padding: 20px;
+        width: 80%;
+        max-width: 600px;
+        max-height: 80vh;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        overflow-y: auto;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    .modal-content h3 {
+        margin: 0 0 10px;
+        font-size: 1.4em;
+        color: #172b4d;
+    }
+    .modal-content .task-title {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        color: #172b4d;
+    }
+    .modal-content .label-container {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 8px;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        border-radius: 3px;
+        font-size: 0.9em;
+        color: white;
+    }
+    .modal-content h4 {
+        font-size: 1em;
+        color: #44546f;
+        margin: 15px 0 10px;
+    }
+    .modal-content ul {
+        list-style: none;
+        padding: 0;
+    }
+    .modal-content li {
+        margin-bottom: 10px;
+        padding: 10px;
+        background: #f4f5f7;
+        border-radius: 3px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        color: #172b4d;
+    }
+    .modal-content .comment-date {
+        font-size: 0.8em;
+        color: #44546f;
+        margin-left: 10px;
+        white-space: nowrap;
+    }
+    .modal-content .close {
+        float: right;
+        cursor: pointer;
+        font-size: 1.2em;
+        color: #172b4d;
+    }
+    .modal-content textarea, .modal-content select {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid #dfe1e6;
+        border-radius: 3px;
+        font-size: 0.9em;
+    }
+    .modal-content .save-btn {
+        padding: 8px 16px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    .modal-content .save-btn:hover {
+        background: #45a049;
+    }
+</style>
     </head>
     <body class="is-preload">
         <div id="page-wrapper">
@@ -213,27 +225,13 @@
 
             <!-- Task Board -->
             <section id="taskboard" class="wrapper style1">
-                <div class="container">
+                <div class="container" style="width: 100vw;">
                     <header class="major">
                         <h2>Development Task Board</h2>
                         <p>Track the progress of Fortune's Favor development</p>
                     </header>
-                    <div class="task-board">
-                        <div class="task-column" id="to-do-optimization">
-                            <h3>To Do Optimization</h3>
-                            <div class="task-list"></div>
-                            <button class="add-card-btn">Add Card</button>
-                        </div>
-                        <div class="task-column" id="to-do-gameplay">
-                            <h3>To Do Gameplay</h3>
-                            <div class="task-list"></div>
-                            <button class="add-card-btn">Add Card</button>
-                        </div>
-                        <div class="task-column" id="done">
-                            <h3>Done</h3>
-                            <div class="task-list"></div>
-                            <button class="add-card-btn">Add Card</button>
-                        </div>
+                    <div class="task-board" id="task-board">
+                        <!-- Task columns will be dynamically generated -->
                     </div>
                     <button class="export-btn">Export Changes to Console</button>
                 </div>
@@ -308,6 +306,8 @@
             const labelsData = {
                 "Optimization": { "Label": "Optimization", "Color": "#4CAF50" },
                 "Gameplay": { "Label": "Gameplay", "Color": "#2196F3" },
+                "Graphics": { "Label": "Graphics", "Color": "#F28C38" },
+                "Bug": { "Label": "Bug", "Color": "#EF5350" },
                 "Completed": { "Label": "Completed", "Color": "#FFC107" }
             };
 
@@ -315,7 +315,11 @@
             const categoriesData = {
                 "To Do Optimization": { "Label": "Optimization" },
                 "To Do Gameplay": { "Label": "Gameplay" },
-                "Done": { "Label": "Completed" }
+                "To Do Graphics": { "Label": "Graphics" },
+                "Bugs To Fix": { "Label": "Bug" },
+                "Doing": { "Label": "Gameplay" },
+                "Done": { "Label": "Completed" },
+                "Abandoned": { "Label": "Gameplay" }
             };
 
             // Embedded tasks data
@@ -371,6 +375,26 @@
                         ]
                     }
                 ],
+                "To Do Graphics": [
+                    {
+                        "Text": "Add normal maps back in",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add parallax occlusion maps back in",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    }
+                ],
+                "Bugs To Fix": [],
+                "Doing": [
+                    {
+                        "Text": "Finish inventory for Survival mode UI",
+                        "Labels": ["Gameplay"],
+                        "Comments": []
+                    }
+                ],
                 "Done": [
                     {
                         "Text": "Switch out ImGUI and Ultralight for RmlUI",
@@ -378,6 +402,44 @@
                         "Comments": [
                             { "Text": "Migration complete, performance improved", "Date": "2025-06-25" },
                             { "Text": "Some styling issues fixed in last update", "Date": "2025-07-10" }
+                        ]
+                    },
+                    {
+                        "Text": "Fix LOD Structures like trees so they look less ugly",
+                        "Labels": ["Completed"],
+                        "Comments": [
+                            { "Text": "Attachment added: image.png", "Date": "2024-12-31" }
+                        ]
+                    },
+                    {
+                        "Text": "Vectorize interpolation of cave noise",
+                        "Labels": ["Completed"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Create a command system integrated into a chat for multiplayer",
+                        "Labels": ["Gameplay"],
+                        "Comments": [
+                            { "Text": "Comment added", "Date": "2024-12-31" }
+                        ]
+                    },
+                    {
+                        "Text": "Implement an Octree",
+                        "Labels": ["Optimization"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Normalize Heightmap and Biome noises",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    }
+                ],
+                "Abandoned": [
+                    {
+                        "Text": "Use a compute shader to generate 3D Noise for chunks",
+                        "Labels": ["Optimization"],
+                        "Comments": [
+                            { "Text": "Comment added", "Date": "2024-12-31" }
                         ]
                     }
                 ]
@@ -436,6 +498,20 @@
                         }
                     }).disableSelection();
                 };
+
+                // Dynamically generate task columns
+                var $taskBoard = $('#task-board').empty();
+                $.each(categoriesData, function(category) {
+                    var columnId = category.toLowerCase().replace(/\s+/g, '-');
+                    var $column = $(`
+                        <div class="task-column" id="${columnId}">
+                            <h3>${category}</h3>
+                            <div class="task-list"></div>
+                            <button class="add-card-btn">Add Card</button>
+                        </div>
+                    `);
+                    $taskBoard.append($column);
+                });
 
                 // Populate task cards
                 $.each(tasksData, function(category, tasks) {
@@ -562,7 +638,7 @@
                     task.Comments = [];
                     $('#modal-comments li').each(function() {
                         var $textarea = $(this).find('.comment-text');
-                        if ($textarea.length) { // Skip non-comment <li> (e.g., "No comments yet")
+                        if ($textarea.length) {
                             var commentText = $textarea.val().trim();
                             var commentDate = $(this).find('input[type="date"]').val();
                             if (commentText) {
@@ -632,6 +708,22 @@
                         $('#task-modal').fadeOut();
                     }
                 });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                function adjustColumnHeights() {
+                    $('.task-column').each(function() {
+                        $(this).css('height', 'auto'); // Reset height
+                        var contentHeight = $(this).find('.task-list').outerHeight() + $(this).find("h3").outerHeight() + 75; // Account for padding and header
+                        $(this).css('height', contentHeight + 'px');
+                    });
+                }
+
+                // Run on page load and after any dynamic content change (e.g., adding cards)
+                adjustColumnHeights();
+                $('.add-card-btn').on('click', adjustColumnHeights);
+                $('.save-btn').on('click', adjustColumnHeights);
             });
         </script>
     </body>

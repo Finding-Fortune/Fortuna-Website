@@ -19,6 +19,7 @@
         padding: 20px;
         overflow-x: auto; /* Enable horizontal scrolling */
         white-space: nowrap; /* Prevent wrapping */
+        height: 600px;
     }
     .task-column {
         flex: 0 0 400px; /* Maintain 400px width */
@@ -329,70 +330,190 @@
                         "Text": "Re-order vertex pool vertices in a compute shader",
                         "Labels": ["Optimization"],
                         "Comments": [
-                            { "Text": "Need to research compute shader compatibility for older GPUs", "Date": "2025-08-01" },
-                            { "Text": "Consider optimizing for Vulkan first", "Date": "2025-08-05" }
+                            { "Text": "Test Comment", "Date": "2025-08-01" },
                         ]
                     },
                     {
                         "Text": "Modify heightmaps to use vectorized interpolation",
                         "Labels": ["Optimization"],
                         "Comments": [
-                            { "Text": "Test performance impact on terrain generation", "Date": "2025-07-20" },
-                            { "Text": "Look into SIMD instructions for this", "Date": "2025-07-25" }
                         ]
                     },
                     {
                         "Text": "Pre-compute shader noise and store in a texture",
                         "Labels": ["Optimization"],
                         "Comments": [
-                            { "Text": "Check texture size limits for mobile devices", "Date": "2025-08-10" }
+                            
                         ]
+                    },
+                    {
+                        "Text": "Meshklet occlusion culling",
+                        "Labels": ["Optimization"],
+                        "Comments": []
                     }
                 ],
                 "To Do Gameplay": [
                     {
                         "Text": "Add a structure saving system with accompanying UI",
                         "Labels": ["Gameplay"],
-                        "Comments": [
-                            { "Text": "UI mockup ready, needs review", "Date": "2025-08-03" },
-                            { "Text": "Ensure save system supports large structures", "Date": "2025-08-07" }
-                        ]
+                        "Comments": []
                     },
                     {
                         "Text": "Add multiplayer support",
                         "Labels": ["Gameplay"],
-                        "Comments": [
-                            { "Text": "Evaluate Photon vs. custom networking solution", "Date": "2025-07-15" },
-                            { "Text": "Sync issues reported in early tests", "Date": "2025-07-30" }
-                        ]
+                        "Comments": []
                     },
                     {
-                        "Text": "Add a crafting system",
+                        "Text": "Add GLTF Entities and make them spawn",
+                        "Labels": ["Gameplay", "Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Finish saving user Settings to database, load them in on world startup",
+                        "Labels": ["Gameplay", "Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Make the player actually take (fall) damage and update the UI for it",
+                        "Labels": ["Gameplay", "Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add better player movement (like climbing)",
                         "Labels": ["Gameplay"],
-                        "Comments": [
-                            { "Text": "Draft crafting recipes completed", "Date": "2025-08-02" },
-                            { "Text": "Need to balance resource costs", "Date": "2025-08-08" }
-                        ]
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add ores to use with crafting",
+                        "Labels": ["Gameplay"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add a system to make villages",
+                        "Labels": ["Gameplay"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add a system to make dungeons",
+                        "Labels": ["Gameplay"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Make the ability to create floating islands and things spawning on them",
+                        "Labels": ["Gameplay"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Make sure slabs render properly and are placed properly",
+                        "Labels": ["Gameplay"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add Stair variants of all cube blocks",
+                        "Labels": ["Gameplay"],
+                        "Comments": []
                     }
                 ],
                 "To Do Graphics": [
                     {
-                        "Text": "Add normal maps back in",
+                        "Text": "Add normal and parallax occlusion maps back in",
                         "Labels": ["Graphics"],
                         "Comments": []
                     },
                     {
-                        "Text": "Add parallax occlusion maps back in",
+                        "Text": "Raytraced lighting",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Raytraced shadows, re-add the shadowmap with reverse-z",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add skirts to LOD levels",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Re-add the night and day cycle",
+                        "Labels": ["Graphics"],
+                        "Comments": [
+                            { "Text": "This is dependent on lighting being done", "Date": "2025-08-12" },
+                        ]
+                    },
+                    {
+                        "Text": "Add 3D clouds and volumetric fog, and settings to toggle them on and off",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add a particle system for leaves falling, rain",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add stone variants",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add 3D sub-voxel models (i.e. tables)",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Make the player visibly hold the current block selected in the hotbar",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Weighted blending to fix transparency",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Have chunks pass structures through LOD levels",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Have LOD chunks render player chunk modifications",
                         "Labels": ["Graphics"],
                         "Comments": []
                     }
                 ],
-                "Bugs To Fix": [],
+                "Bugs To Fix": [
+                    {
+                        "Text": "Random crashes on low-end CPUs",
+                        "Labels": ["Bug"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Update and fix the linux build",
+                        "Labels": ["Bug"],
+                        "Comments": [
+                            { "Text": "Going to need to update a bunch of libraries and such. Also going to need to compile on a lower version of ubuntu to fix Quantum's issue", "Date": "2025-08-12" },
+                        ]
+                    }
+                ],
                 "Doing": [
                     {
-                        "Text": "Finish inventory for Survival mode UI",
+                        "Text": "Finish inventory New World, Load World menus",
+                        "Labels": ["Graphics"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Add a crafting system",
                         "Labels": ["Gameplay"],
                         "Comments": []
+                    },
+                    {
+                        "Text": "Use XSIMD instead of raw intrinsics",
+                        "Labels": ["Optimization"],
+                        "Comments": [
+                            { "Text": "Still needs to be modified so it updates from SSE2 to AVX2 dependending on CPU using arch dispatching. ", "Date": "2025-08-12" },
+                        ]
                     }
                 ],
                 "Done": [
@@ -400,15 +521,12 @@
                         "Text": "Switch out ImGUI and Ultralight for RmlUI",
                         "Labels": ["Completed"],
                         "Comments": [
-                            { "Text": "Migration complete, performance improved", "Date": "2025-06-25" },
-                            { "Text": "Some styling issues fixed in last update", "Date": "2025-07-10" }
                         ]
                     },
                     {
                         "Text": "Fix LOD Structures like trees so they look less ugly",
                         "Labels": ["Completed"],
                         "Comments": [
-                            { "Text": "Attachment added: image.png", "Date": "2024-12-31" }
                         ]
                     },
                     {
@@ -420,7 +538,6 @@
                         "Text": "Create a command system integrated into a chat for multiplayer",
                         "Labels": ["Gameplay"],
                         "Comments": [
-                            { "Text": "Comment added", "Date": "2024-12-31" }
                         ]
                     },
                     {
@@ -432,6 +549,16 @@
                         "Text": "Normalize Heightmap and Biome noises",
                         "Labels": ["Graphics"],
                         "Comments": []
+                    },
+                    {
+                        "Text": "Place structures with binary operations",
+                        "Labels": ["Optimization"],
+                        "Comments": []
+                    },
+                    {
+                        "Text": "Finish inventory for Survival mode UI",
+                        "Labels": ["Gameplay"],
+                        "Comments": []
                     }
                 ],
                 "Abandoned": [
@@ -439,7 +566,7 @@
                         "Text": "Use a compute shader to generate 3D Noise for chunks",
                         "Labels": ["Optimization"],
                         "Comments": [
-                            { "Text": "Comment added", "Date": "2024-12-31" }
+                            { "Text": "Too many complications moving data between cpu and gpu. Also already using the GPU a ton with rendering, no space for generation on lower-end hardware", "Date": "2025-08-12" },
                         ]
                     }
                 ]
@@ -522,13 +649,17 @@
                     var labelInfo = labelsData[categoryInfo.Label] || { Label: categoryInfo.Label, Color: "#999" };
 
                     $.each(tasks, function(index, task) {
+                        // console.log(task)
+                        console.log(labelsData[task.Labels[0]].Color)
+                        console.log(labelsData[task.Labels[0]])
+                        // console.log(labelsData)
                         var commentCount = task.Comments ? task.Comments.length : 0;
                         var cardHtml = `
                             <div class="task-card" data-category="${normalizedCategory}" data-index="${index}">
                                 <p>${task.Text}</p>
                                 <div class="card-footer">
-                                    <div class="color-bar" style="background-color: ${labelInfo.Color};"></div>
-                                    <div class="category-label">${labelInfo.Label}</div>
+                                    <div class="color-bar" style="background-color: ${labelsData[task.Labels[0]].Color};"></div>
+                                    <div class="category-label">${labelsData[task.Labels[0]].Label}</div>
                                 </div>
                                 <div class="comment-count">
                                     <i class="icon solid fa-comment"></i> ${commentCount}

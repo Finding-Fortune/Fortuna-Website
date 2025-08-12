@@ -1,0 +1,638 @@
+<!DOCTYPE HTML>
+<!--
+    Arcana by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Fortune's Favor - Task Board</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+        <style>
+            .task-board {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+                padding: 20px;
+            }
+            .task-column {
+                flex: 1;
+                min-width: 300px;
+                background: #f4f4f4;
+                border-radius: 5px;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .task-column h3 {
+                margin-top: 0;
+                font-size: 1.5em;
+                color: #333;
+            }
+            .task-card {
+                background: white;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 10px;
+                margin-bottom: 10px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                position: relative;
+            }
+            .task-card:hover {
+                background: #f9f9f9;
+            }
+            .task-card .card-footer {
+                display: flex;
+                align-items: center;
+                margin-top: 10px;
+            }
+            .task-card .color-bar {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+                border-radius: 3px;
+            }
+            .task-card .category-label {
+                font-size: 0.8em;
+                color: #777;
+            }
+            .task-card .comment-count {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8em;
+                color: #777;
+                display: flex;
+                align-items: center;
+            }
+            .task-card .comment-count i {
+                margin-right: 5px;
+            }
+            .add-card-btn {
+                display: none;
+                background: #e0e0e0;
+                border: none;
+                padding: 10px;
+                width: 100%;
+                text-align: left;
+                cursor: pointer;
+                border-radius: 3px;
+                font-size: 0.9em;
+            }
+            .add-card-btn:hover {
+                background: #d0d0d0;
+            }
+            .export-btn {
+                display: none;
+                margin: 20px auto;
+                padding: 10px 20px;
+                background: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .export-btn:hover {
+                background: #45a049;
+            }
+            /* Modal styles */
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 1000;
+                overflow: auto;
+            }
+            .modal-content {
+                background: white;
+                margin: 5% auto;
+                padding: 20px;
+                width: 80%;
+                max-width: 600px;
+                max-height: 80vh;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                overflow-y: auto;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            }
+            .modal-content h3 {
+                margin: 0 0 10px;
+                font-size: 1.4em;
+                color: #172b4d;
+            }
+            .modal-content .task-title {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+                color: #172b4d;
+            }
+            .modal-content .label-container {
+                display: inline-flex;
+                align-items: center;
+                padding: 4px 8px;
+                margin-right: 8px;
+                margin-bottom: 8px;
+                border-radius: 3px;
+                font-size: 0.9em;
+                color: white;
+            }
+            .modal-content h4 {
+                font-size: 1em;
+                color: #44546f;
+                margin: 15px 0 10px;
+            }
+            .modal-content ul {
+                list-style: none;
+                padding: 0;
+            }
+            .modal-content li {
+                margin-bottom: 10px;
+                padding: 10px;
+                background: #f4f5f7;
+                border-radius: 3px;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                color: #172b4d;
+            }
+            .modal-content .comment-date {
+                font-size: 0.8em;
+                color: #44546f;
+                margin-left: 10px;
+                white-space: nowrap;
+            }
+            .modal-content .close {
+                float: right;
+                cursor: pointer;
+                font-size: 1.2em;
+                color: #172b4d;
+            }
+            .modal-content textarea, .modal-content select {
+                width: 100%;
+                margin-bottom: 10px;
+                padding: 8px;
+                border: 1px solid #dfe1e6;
+                border-radius: 3px;
+                font-size: 0.9em;
+            }
+            .modal-content .save-btn {
+                padding: 8px 16px;
+                background: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+            .modal-content .save-btn:hover {
+                background: #45a049;
+            }
+        </style>
+    </head>
+    <body class="is-preload">
+        <div id="page-wrapper">
+
+            <!-- Header -->
+            <div id="header">
+                <nav id="nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="current"><a href="taskboard.html">Task Board</a></li>
+                        <li><a target="_blank" href="https://discord.gg/2RjVwrSFB3">Discord</a></li>
+                        <li><a target="_blank" href="https://finding-fortune.itch.io/fortunes-favor-alpha">Download</a></li>
+                        <li><a href="index.html#screenshots">Showcase</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Task Board -->
+            <section id="taskboard" class="wrapper style1">
+                <div class="container">
+                    <header class="major">
+                        <h2>Development Task Board</h2>
+                        <p>Track the progress of Fortune's Favor development</p>
+                    </header>
+                    <div class="task-board">
+                        <div class="task-column" id="to-do-optimization">
+                            <h3>To Do Optimization</h3>
+                            <div class="task-list"></div>
+                            <button class="add-card-btn">Add Card</button>
+                        </div>
+                        <div class="task-column" id="to-do-gameplay">
+                            <h3>To Do Gameplay</h3>
+                            <div class="task-list"></div>
+                            <button class="add-card-btn">Add Card</button>
+                        </div>
+                        <div class="task-column" id="done">
+                            <h3>Done</h3>
+                            <div class="task-list"></div>
+                            <button class="add-card-btn">Add Card</button>
+                        </div>
+                    </div>
+                    <button class="export-btn">Export Changes to Console</button>
+                </div>
+            </section>
+
+            <!-- Modal for task view/edit -->
+            <div class="modal" id="task-modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3 id="modal-header"></h3>
+                    <div id="modal-task-title"></div>
+                    <h4>Labels</h4>
+                    <div id="modal-labels"></div>
+                    <h4>Comments</h4>
+                    <ul id="modal-comments"></ul>
+                    <div id="modal-edit-section" style="display: none;">
+                        <label>Add Comment:</label>
+                        <textarea id="modal-new-comment" rows="2"></textarea>
+                        <button id="add-comment-btn">Add Comment</button>
+                        <button class="save-btn">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="footer">
+                <div class="container">
+                    <div class="row">
+                        <section class="col-6 col-12-narrower col-12-mobilep">
+                            <h3>Quick Links</h3>
+                            <ul class="links">
+                                <li><a href="taskboard.html">Dev Progress</a></li>
+                                <li><a href="https://www.youtube.com/@Finding_Fortune/videos" target="_blank">YouTube Channel</a></li>
+                                <li><a href="https://finding-fortune.itch.io/fortunes-favor-alpha" target="_blank">Itch.io</a></li>
+                                <li><a href="index.html#screenshots">Screenshots</a></li>
+                                <li><a href="https://discord.gg/2RjVwrSFB3">Discord</a></li>
+                            </ul>
+                        </section>
+                        <section class="col-6 col-12-narrower col-12-mobilep">
+                            <h3>Support the Project</h3>
+                            <ul class="links">
+                                <li><a href="#">Patreon (In the Works)</a></li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+                <ul class="icons">
+                    <li><a href="https://x.com/FindingFortune1" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                    <li><a href="https://github.com/Finding-Fortune" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="https://www.youtube.com/@Finding_Fortune/videos" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+                </ul>
+                <div class="copyright">
+                    <ul class="menu">
+                        <li>&copy; Fortune's Favor. All rights reserved</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+        <script>
+            // Embedded labels data
+            const labelsData = {
+                "Optimization": { "Label": "Optimization", "Color": "#4CAF50" },
+                "Gameplay": { "Label": "Gameplay", "Color": "#2196F3" },
+                "Completed": { "Label": "Completed", "Color": "#FFC107" }
+            };
+
+            // Embedded categories data
+            const categoriesData = {
+                "To Do Optimization": { "Label": "Optimization" },
+                "To Do Gameplay": { "Label": "Gameplay" },
+                "Done": { "Label": "Completed" }
+            };
+
+            // Embedded tasks data
+            const tasksData = {
+                "To Do Optimization": [
+                    {
+                        "Text": "Re-order vertex pool vertices in a compute shader",
+                        "Labels": ["Optimization"],
+                        "Comments": [
+                            { "Text": "Need to research compute shader compatibility for older GPUs", "Date": "2025-08-01" },
+                            { "Text": "Consider optimizing for Vulkan first", "Date": "2025-08-05" }
+                        ]
+                    },
+                    {
+                        "Text": "Modify heightmaps to use vectorized interpolation",
+                        "Labels": ["Optimization"],
+                        "Comments": [
+                            { "Text": "Test performance impact on terrain generation", "Date": "2025-07-20" },
+                            { "Text": "Look into SIMD instructions for this", "Date": "2025-07-25" }
+                        ]
+                    },
+                    {
+                        "Text": "Pre-compute shader noise and store in a texture",
+                        "Labels": ["Optimization"],
+                        "Comments": [
+                            { "Text": "Check texture size limits for mobile devices", "Date": "2025-08-10" }
+                        ]
+                    }
+                ],
+                "To Do Gameplay": [
+                    {
+                        "Text": "Add a structure saving system with accompanying UI",
+                        "Labels": ["Gameplay"],
+                        "Comments": [
+                            { "Text": "UI mockup ready, needs review", "Date": "2025-08-03" },
+                            { "Text": "Ensure save system supports large structures", "Date": "2025-08-07" }
+                        ]
+                    },
+                    {
+                        "Text": "Add multiplayer support",
+                        "Labels": ["Gameplay"],
+                        "Comments": [
+                            { "Text": "Evaluate Photon vs. custom networking solution", "Date": "2025-07-15" },
+                            { "Text": "Sync issues reported in early tests", "Date": "2025-07-30" }
+                        ]
+                    },
+                    {
+                        "Text": "Add a crafting system",
+                        "Labels": ["Gameplay"],
+                        "Comments": [
+                            { "Text": "Draft crafting recipes completed", "Date": "2025-08-02" },
+                            { "Text": "Need to balance resource costs", "Date": "2025-08-08" }
+                        ]
+                    }
+                ],
+                "Done": [
+                    {
+                        "Text": "Switch out ImGUI and Ultralight for RmlUI",
+                        "Labels": ["Completed"],
+                        "Comments": [
+                            { "Text": "Migration complete, performance improved", "Date": "2025-06-25" },
+                            { "Text": "Some styling issues fixed in last update", "Date": "2025-07-10" }
+                        ]
+                    }
+                ]
+            };
+
+            let isEditMode = false;
+
+            // Normalize category name to match categoriesData keys
+            function normalizeCategoryName(category) {
+                return Object.keys(categoriesData).find(key => 
+                    key.toLowerCase() === category.toLowerCase()
+                ) || category;
+            }
+
+            $(document).ready(function() {
+                // Hidden console command to enable editing
+                window.enableTaskBoardEdit = function() {
+                    isEditMode = true;
+                    $('.add-card-btn').show();
+                    $('.export-btn').show();
+                    // Enable drag-and-drop
+                    $('.task-list').sortable({
+                        connectWith: '.task-list',
+                        placeholder: 'task-card-placeholder',
+                        update: function(event, ui) {
+                            var $card = ui.item;
+                            var newColumnId = $card.closest('.task-column').attr('id');
+                            var newCategory = normalizeCategoryName(newColumnId.replace(/-/g, ' '));
+                            var oldCategory = $card.data('category');
+                            var index = $card.data('index');
+
+                            // Move task to new category in tasksData
+                            if (oldCategory !== newCategory) {
+                                var task = tasksData[oldCategory][index];
+                                tasksData[oldCategory].splice(index, 1);
+                                if (!tasksData[newCategory]) {
+                                    tasksData[newCategory] = [];
+                                }
+                                tasksData[newCategory].push(task);
+                                $card.data('category', newCategory).data('index', tasksData[newCategory].length - 1);
+
+                                // Update indices for all cards in affected columns
+                                $(`.task-column[id="${oldCategory.toLowerCase().replace(/\s+/g, '-')}"] .task-card`).each(function(i) {
+                                    $(this).data('index', i);
+                                });
+                                $(`.task-column[id="${newColumnId}"] .task-card`).each(function(i) {
+                                    $(this).data('index', i);
+                                });
+
+                                // Clean up empty categories
+                                if (tasksData[oldCategory].length === 0) {
+                                    delete tasksData[oldCategory];
+                                }
+                            }
+                            console.log('Task order updated');
+                        }
+                    }).disableSelection();
+                };
+
+                // Populate task cards
+                $.each(tasksData, function(category, tasks) {
+                    var normalizedCategory = normalizeCategoryName(category);
+                    var columnId = normalizedCategory.toLowerCase().replace(/\s+/g, '-');
+                    var $taskList = $(`#${columnId} .task-list`);
+                    var categoryInfo = categoriesData[normalizedCategory] || { Label: category };
+                    var labelInfo = labelsData[categoryInfo.Label] || { Label: categoryInfo.Label, Color: "#999" };
+
+                    $.each(tasks, function(index, task) {
+                        var commentCount = task.Comments ? task.Comments.length : 0;
+                        var cardHtml = `
+                            <div class="task-card" data-category="${normalizedCategory}" data-index="${index}">
+                                <p>${task.Text}</p>
+                                <div class="card-footer">
+                                    <div class="color-bar" style="background-color: ${labelInfo.Color};"></div>
+                                    <div class="category-label">${labelInfo.Label}</div>
+                                </div>
+                                <div class="comment-count">
+                                    <i class="icon solid fa-comment"></i> ${commentCount}
+                                </div>
+                            </div>
+                        `;
+                        $taskList.append(cardHtml);
+                    });
+                });
+
+                // Populate labels in modal
+                function populateLabelsSelect(selectedLabels) {
+                    var $select = $('#modal-labels').empty();
+                    $.each(labelsData, function(label) {
+                        var isSelected = selectedLabels.includes(label) ? 'selected' : '';
+                        $select.append(`<option value="${label}" ${isSelected}>${label}</option>`);
+                    });
+                }
+
+                // Show modal for viewing/editing card
+                $('.task-board').on('click', '.task-card', function(e) {
+                    if (!$(e.target).closest('.task-list').hasClass('ui-sortable-helper')) {
+                        var $card = $(this);
+                        var category = $card.data('category');
+                        var index = $card.data('index');
+                        var task = tasksData[category][index];
+
+                        $('#modal-header').text(isEditMode ? 'Edit Task' : 'Task Details');
+                        $('#modal-task-title').html(isEditMode ? 
+                            `<textarea rows="2">${task.Text}</textarea>` : 
+                            `<div class="task-title">${task.Text}</div>`);
+
+                        var $labels = $('#modal-labels').empty();
+                        if (isEditMode) {
+                            $labels.replaceWith(`<select id="modal-labels" multiple></select>`);
+                            populateLabelsSelect(task.Labels || []);
+                        } else {
+                            $labels.html(task.Labels.map(label => {
+                                var labelInfo = labelsData[label] || { Label: label, Color: "#999" };
+                                return `<div class="label-container" style="background-color: ${labelInfo.Color}">${labelInfo.Label}</div>`;
+                            }).join(''));
+                        }
+
+                        var $commentsList = $('#modal-comments').empty();
+                        if (task.Comments && task.Comments.length > 0) {
+                            $.each(task.Comments, function(i, comment) {
+                                $commentsList.append(isEditMode ? 
+                                    `<li data-comment-index="${i}">
+                                        <span><textarea class="comment-text">${comment.Text}</textarea></span>
+                                        <span class="comment-date"><input type="date" value="${comment.Date}"></span>
+                                    </li>` :
+                                    `<li>
+                                        <span>${comment.Text}</span>
+                                        <span class="comment-date">${comment.Date}</span>
+                                    </li>`
+                                );
+                            });
+                        } else {
+                            $commentsList.append('<li>No comments yet.</li>');
+                        }
+
+                        $('#modal-edit-section').toggle(isEditMode);
+                        $('#task-modal').data('category', category).data('index', index).fadeIn();
+                    }
+                });
+
+                // Add new comment
+                $('#add-comment-btn').on('click', function() {
+                    var commentText = $('#modal-new-comment').val().trim();
+                    if (commentText) {
+                        var today = new Date().toISOString().split('T')[0];
+                        var category = $('#task-modal').data('category');
+                        var index = $('#task-modal').data('index');
+                        var task = tasksData[category][index];
+
+                        if (!task.Comments) {
+                            task.Comments = [];
+                        }
+                        task.Comments.push({ Text: commentText, Date: today });
+
+                        var $commentsList = $('#modal-comments');
+                        if ($commentsList.find('li').text() === 'No comments yet.') {
+                            $commentsList.empty();
+                        }
+                        $commentsList.append(`
+                            <li data-comment-index="${task.Comments.length - 1}">
+                                <span><textarea class="comment-text">${commentText}</textarea></span>
+                                <span class="comment-date"><input type="date" value="${today}"></span>
+                            </li>
+                        `);
+                        $('#modal-new-comment').val('');
+
+                        // Update card UI
+                        var $card = $(`.task-card[data-category="${category}"][data-index="${index}"]`);
+                        $card.find('.comment-count').html(`<i class="icon solid fa-comment"></i> ${task.Comments.length}`);
+                    }
+                });
+
+                // Save task changes
+                $('.modal-content').on('click', '.save-btn', function() {
+                    var category = $('#task-modal').data('category');
+                    var index = $('#task-modal').data('index');
+                    var task = tasksData[category][index];
+
+                    task.Text = $('#modal-task-title textarea').val().trim();
+                    task.Labels = $('#modal-labels').val() || [];
+                    task.Comments = [];
+                    $('#modal-comments li').each(function() {
+                        var $textarea = $(this).find('.comment-text');
+                        if ($textarea.length) { // Skip non-comment <li> (e.g., "No comments yet")
+                            var commentText = $textarea.val().trim();
+                            var commentDate = $(this).find('input[type="date"]').val();
+                            if (commentText) {
+                                task.Comments.push({ Text: commentText, Date: commentDate });
+                            }
+                        }
+                    });
+
+                    // Update card UI
+                    var $card = $(`.task-card[data-category="${category}"][data-index="${index}"]`);
+                    $card.find('p').text(task.Text);
+                    $card.find('.comment-count').html(`<i class="icon solid fa-comment"></i> ${task.Comments.length}`);
+                    var categoryInfo = categoriesData[category] || { Label: category };
+                    var labelInfo = task.Labels[0] ? 
+                        (labelsData[task.Labels[0]] || { Label: task.Labels[0], Color: "#999" }) : 
+                        (labelsData[categoryInfo.Label] || { Label: categoryInfo.Label, Color: "#999" });
+                    $card.find('.color-bar').css('background-color', labelInfo.Color);
+                    $card.find('.category-label').text(labelInfo.Label);
+
+                    $('#task-modal').fadeOut();
+                });
+
+                // Add new card
+                $('.add-card-btn').on('click', function() {
+                    var $column = $(this).closest('.task-column');
+                    var columnId = $column.attr('id');
+                    var category = normalizeCategoryName(columnId.replace(/-/g, ' '));
+                    var categoryInfo = categoriesData[category] || { Label: category };
+                    var defaultLabel = categoryInfo.Label || category;
+                    var labelInfo = labelsData[defaultLabel] || { Label: defaultLabel, Color: "#999" };
+
+                    var newTask = {
+                        Text: "New Task",
+                        Labels: [defaultLabel],
+                        Comments: []
+                    };
+                    if (!tasksData[category]) {
+                        tasksData[category] = [];
+                    }
+                    tasksData[category].push(newTask);
+                    var index = tasksData[category].length - 1;
+                    var cardHtml = `
+                        <div class="task-card" data-category="${category}" data-index="${index}">
+                            <p>${newTask.Text}</p>
+                            <div class="card-footer">
+                                <div class="color-bar" style="background-color: ${labelInfo.Color};"></div>
+                                <div class="category-label">${labelInfo.Label}</div>
+                            </div>
+                            <div class="comment-count">
+                                <i class="icon solid fa-comment"></i> 0
+                            </div>
+                        </div>
+                    `;
+                    $column.find('.task-list').append(cardHtml);
+                });
+
+                // Export changes to console
+                $('.export-btn').on('click', function() {
+                    console.log('Updated categoriesData:', JSON.stringify(categoriesData, null, 2));
+                    console.log('Updated labelsData:', JSON.stringify(labelsData, null, 2));
+                    console.log('Updated tasksData:', JSON.stringify(tasksData, null, 2));
+                });
+
+                // Close modal without saving
+                $('.modal, .close').on('click', function(e) {
+                    if (e.target === this || $(e.target).hasClass('close')) {
+                        $('#task-modal').fadeOut();
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
